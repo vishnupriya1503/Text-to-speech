@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text to Speech Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.dev/svgjs' width='1440' height='560' preserveAspectRatio='none' viewBox='0 0 1440 560'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1000%26quot%3b)' fill='none'%3e%3crect width='1440' height='560' x='0' y='0' fill='%230e2a47'%3e%3c/rect%3e%3cpath d='M356.881%2c588.677C380.043%2c587.476%2c399.103%2c572.261%2c410.48%2c552.05C421.616%2c532.268%2c424.15%2c508.474%2c413.237%2c488.568C401.908%2c467.903%2c380.441%2c453.698%2c356.881%2c454.282C334.177%2c454.845%2c317.103%2c471.926%2c305.166%2c491.247C292.386%2c511.933%2c281.306%2c536.679%2c292.706%2c558.156C304.609%2c580.581%2c331.527%2c589.992%2c356.881%2c588.677' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float2'%3e%3c/path%3e%3cpath d='M736.7436919833189 361.5890744927687L805.7705861647698 279.32602536640417 647.8625653844975 216.91720865741004z' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float2'%3e%3c/path%3e%3cpath d='M72.85355611157729-40.95709500244626L41.02937910317318 34.015967693196444 169.40106165083927 44.26570185798124z' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float1'%3e%3c/path%3e%3cpath d='M1399.5200727139527 439.6715767050264L1476.6050669320937 294.69578799789974 1254.544284006826 362.5865824868854z' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float2'%3e%3c/path%3e%3cpath d='M251.8152814339814 211.4040001163888L182.72472693140915 321.73787923809164 296.3673605302174 327.6936372968815z' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float3'%3e%3c/path%3e%3cpath d='M384.052%2c503.551C428.478%2c503.728%2c462.348%2c467.455%2c482.854%2c428.045C501.647%2c391.928%2c504.036%2c348.72%2c482.636%2c314.084C462.211%2c281.026%2c422.857%2c270.175%2c384.052%2c268.131C340.059%2c265.814%2c288.682%2c265.087%2c265.676%2c302.657C242.103%2c341.153%2c263.692%2c388.371%2c286.608%2c427.261C309.054%2c465.354%2c339.838%2c503.374%2c384.052%2c503.551' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float2'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1000'%3e%3crect width='1440' height='560' fill='white'%3e%3c/rect%3e%3c/mask%3e%3cstyle%3e %40keyframes float1 %7b 0%25%7btransform: translate(0%2c 0)%7d 50%25%7btransform: translate(-10px%2c 0)%7d 100%25%7btransform: translate(0%2c 0)%7d %7d .triangle-float1 %7b animation: float1 5s infinite%3b %7d %40keyframes float2 %7b 0%25%7btransform: translate(0%2c 0)%7d 50%25%7btransform: translate(-5px%2c -5px)%7d 100%25%7btransform: translate(0%2c 0)%7d %7d .triangle-float2 %7b animation: float2 4s infinite%3b %7d %40keyframes float3 %7b 0%25%7btransform: translate(0%2c 0)%7d 50%25%7btransform: translate(0%2c -10px)%7d 100%25%7btransform: translate(0%2c 0)%7d %7d .triangle-float3 %7b animation: float3 6s infinite%3b %7d %3c/style%3e%3c/defs%3e%3c/svg%3e");
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Text to Speech Converter</h2>
+        <textarea id="text-input" placeholder="Enter text here..."></textarea>
+        <button onclick="speakText()">Convert to Speech</button>
+    </div>
+    <script>
+        function speakText() {
+            const text = document.getElementById('text-input').value;
+            if (text.trim() === "") {
+                alert("Please enter some text.");
+                return;
+            }
+
+            const speech = new SpeechSynthesisUtterance();
+            speech.text = text;
+            speech.volume = 1; // Volume range is from 0 to 1
+            speech.rate = 1;   // Speed rate
+            speech.pitch = 1;  // Pitch range is from 0 to 2
+
+            window.speechSynthesis.speak(speech);
+        }
+    </script>
+</body>
+</html>
